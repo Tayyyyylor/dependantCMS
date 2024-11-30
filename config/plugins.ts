@@ -4,8 +4,7 @@ export default ({ env }: { env: (key: string, defaultValue?: string) => string }
         config: {
             provider: 'aws-s3',
             providerOptions: {
-                baseUrl: env('CDN_URL'),
-                rootPath: "",
+                customDomain: env('CDN_URL'),
                 s3Options: {
                     credentials: {
                         accessKeyId: env('AWS_KEY_ID'),
