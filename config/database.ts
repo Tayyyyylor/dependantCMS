@@ -49,7 +49,17 @@ export default ({ env }) => {
       useNullAsDefault: true,
     },
   };
-
+  console.log('DATABASE_URL:', env('DATABASE_URL'));
+  console.log('DATABASE_CLIENT:', env('DATABASE_CLIENT'));
+  console.log('Database Config:', {
+    client: env('DATABASE_CLIENT'),
+    host: env('DATABASE_HOST'),
+    port: env.int('DATABASE_PORT', 5432),
+    database: env('DATABASE_NAME'),
+    user: env('DATABASE_USERNAME'),
+    password: env('DATABASE_PASSWORD'),
+    ssl: env.bool('DATABASE_SSL', false),
+  });
   return {
     connection: {
       client,
