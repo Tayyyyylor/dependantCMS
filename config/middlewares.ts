@@ -7,7 +7,7 @@ export default ({env}) => [
       contentSecurityPolicy: {
         useDefaults: true,
         directives: {
-          "connect-src": ["'self'", "https:"],
+          "connect-src": ["'self'", "https:", 'http://dependant-tv.vercel.app', 'https://dependant.tv'],
           "img-src": [
             "'self'",
             "data:",
@@ -15,7 +15,7 @@ export default ({env}) => [
             "dl.airtable.com",
             `https://${env("AWS_BUCKET")}.s3.${env(
               "AWS_REGION"
-            )}.amazonaws.com/`,
+            )}.amazonaws.com`,
             env("CDN_URL"),
           ],
           "media-src": [
@@ -25,7 +25,7 @@ export default ({env}) => [
             "dl.airtable.com",
             `https://${env("AWS_BUCKET")}.s3.${env(
               "AWS_REGION"
-            )}.amazonaws.com/`,
+            )}.amazonaws.com`,
             env("CDN_URL"),
           ],
           upgradeInsecureRequests: null,
@@ -33,7 +33,19 @@ export default ({env}) => [
       },
     },
   },
-  'strapi::cors',
+  {
+    name: 'strapi::cors',
+    config: {
+      enabled: true,
+      origin: [
+        'http://localhost:3000',
+        'http://dependant-tv.vercel.app',
+        'https://dependant.tv',
+      ],
+      methods: ['GET', 'POST', 'PUT', 'DELETE', 'HEAD', 'OPTIONS'],
+      headers: ['Content-Type', 'Authorization', 'Origin', 'Accept'],
+    },
+  },
   'strapi::poweredBy',
   'strapi::query',
   'strapi::body',
