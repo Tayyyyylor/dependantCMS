@@ -13,7 +13,8 @@
   "pluginOptions": {},
   "attributes": {
     "name": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "videos": {
       "type": "relation",
@@ -23,6 +24,12 @@
     "slug": {
       "type": "uid",
       "targetField": "name"
+    },
+    "photographer": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::photographer.photographer",
+      "inversedBy": "director"
     }
   }
 }
