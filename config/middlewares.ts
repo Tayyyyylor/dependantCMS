@@ -7,7 +7,7 @@ export default ({env}) => [
       contentSecurityPolicy: {
         useDefaults: true,
         directives: {
-          "connect-src": ["'self'", "https:", 'http://dependant-tv.vercel.app', 'https://dependant.tv'],
+          "connect-src": ["'self'", "https:", 'https://dependant.tv', 'https://www.dependant.tv'],
           "img-src": [
             "'self'",
             "data:",
