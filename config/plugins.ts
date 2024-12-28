@@ -4,6 +4,7 @@ export default ({ env }: { env: (key: string, defaultValue?: string) => string }
         config: {
             provider: 'aws-s3',
             providerOptions: {
+                rootPath: 'input',
                 s3Options: {
                     baseUrl: env('CDN_URL'),
                     credentials: {
@@ -13,14 +14,13 @@ export default ({ env }: { env: (key: string, defaultValue?: string) => string }
                     region: env('AWS_REGION'),
                     params: {
                         Bucket: env('AWS_BUCKET'),
-                        prefix: 'input/',
                     },
                 },
                 customDomain: env('CDN_URL'),
             },
             actionOptions: {
                 upload: {},
-                uploadStream: {},
+                  uploadStream: {},
                 delete: {},
             },
         },

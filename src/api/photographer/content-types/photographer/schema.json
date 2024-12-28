@@ -16,20 +16,31 @@
       "type": "string",
       "required": true
     },
-    "photos": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::photo.photo"
-    },
     "slug": {
       "type": "uid",
-      "targetField": "name"
+      "targetField": "name",
+      "required": true
     },
     "director": {
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::director.director",
       "inversedBy": "photographer"
+    },
+    "projects": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::project.project"
+    },
+    "photo": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
     }
   }
 }

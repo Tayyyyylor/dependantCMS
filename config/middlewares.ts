@@ -38,9 +38,8 @@ export default ({env}) => [
     config: {
       enabled: true,
       origin: [
-        'http://localhost:3000',
-        'http://dependant-tv.vercel.app',
         'https://dependant.tv',
+        'https://www.dependant.tv'
       ],
       methods: ['GET', 'POST', 'PUT', 'DELETE', 'HEAD', 'OPTIONS'],
       headers: ['Content-Type', 'Authorization', 'Origin', 'Accept'],

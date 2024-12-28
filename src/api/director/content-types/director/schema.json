@@ -29,7 +29,7 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::photographer.photographer",
-      "inversedBy": "director"
+      "mappedBy": "director"
     }
   }
 }
