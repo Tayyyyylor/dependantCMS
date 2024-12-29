@@ -4,7 +4,6 @@ export default ({ env }: { env: (key: string, defaultValue?: string) => string }
         config: {
             provider: 'aws-s3',
             providerOptions: {
-                rootPath: 'input',
                 s3Options: {
                     baseUrl: env('CDN_URL'),
                     credentials: {
