@@ -23,7 +23,8 @@
     },
     "slug": {
       "type": "uid",
-      "targetField": "name"
+      "targetField": "name",
+      "required": true
     },
     "photographer": {
       "type": "relation",
