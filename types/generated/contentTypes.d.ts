@@ -458,7 +458,9 @@ export interface ApiHomepageVideoHomepageVideo
       'api::homepage-video.homepage-video'
     > &
       Schema.Attribute.Private;
-    order: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
+    order: Schema.Attribute.Integer &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<0>;
     publishedAt: Schema.Attribute.DateTime;
     title: Schema.Attribute.String & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
@@ -469,37 +471,6 @@ export interface ApiHomepageVideoHomepageVideo
       true
     > &
       Schema.Attribute.Required;
-  };
-}
-
-export interface ApiHomepageHomepage extends Struct.SingleTypeSchema {
-  collectionName: 'homepages';
-  info: {
-    displayName: 'homepage';
-    pluralName: 'homepages';
-    singularName: 'homepage';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::homepage.homepage'
-    > &
-      Schema.Attribute.Private;
-    publishedAt: Schema.Attribute.DateTime;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    video: Schema.Attribute.Media<
-      'images' | 'files' | 'videos' | 'audios',
-      true
-    >;
   };
 }
 
@@ -532,7 +503,7 @@ export interface ApiPhotographerPhotographer
     projects: Schema.Attribute.Relation<'oneToMany', 'api::project.project'>;
     publishedAt: Schema.Attribute.DateTime;
     slug: Schema.Attribute.UID<'name'> & Schema.Attribute.Required;
-    titlePhoto: Schema.Attribute.String;
+    titlePhoto: Schema.Attribute.String & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -543,7 +514,7 @@ export interface ApiProjectProject extends Struct.CollectionTypeSchema {
   collectionName: 'projects';
   info: {
     description: '';
-    displayName: 'projects';
+    displayName: 'projectsPhotos';
     pluralName: 'projects';
     singularName: 'project';
   };
@@ -1159,7 +1130,6 @@ declare module '@strapi/strapi' {
       'api::contact.contact': ApiContactContact;
       'api::director.director': ApiDirectorDirector;
       'api::homepage-video.homepage-video': ApiHomepageVideoHomepageVideo;
-      'api::homepage.homepage': ApiHomepageHomepage;
       'api::photographer.photographer': ApiPhotographerPhotographer;
       'api::project.project': ApiProjectProject;
       'api::video.video': ApiVideoVideo;
