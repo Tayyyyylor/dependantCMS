@@ -19,7 +19,7 @@ export default ({ env }: { env: (key: string, defaultValue?: string) => string }
             },
             actionOptions: {
                 upload: {},
-                  uploadStream: {},
+                uploadStream: {},
                 delete: {},
             },
         },
