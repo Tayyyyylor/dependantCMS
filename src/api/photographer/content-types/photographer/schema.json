@@ -46,9 +46,6 @@
     "titlePhoto": {
       "type": "string",
       "required": true
-    },
-    "testField": {
-      "type": "string"
     }
   }
 }
