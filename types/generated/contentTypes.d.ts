@@ -452,6 +452,7 @@ export interface ApiHomepageVideoHomepageVideo
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     director: Schema.Attribute.Relation<'oneToOne', 'api::director.director'>;
+    directorNameBIS: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',

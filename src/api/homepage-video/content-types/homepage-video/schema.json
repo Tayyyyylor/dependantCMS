@@ -36,6 +36,9 @@
       "type": "integer",
       "default": 0,
       "required": true
+    },
+    "directorNameBIS": {
+      "type": "string"
     }
   }
 }
