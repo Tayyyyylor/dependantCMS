@@ -412,6 +412,9 @@ export interface ApiDirectorDirector extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
+    coverVideo: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -422,10 +425,6 @@ export interface ApiDirectorDirector extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     name: Schema.Attribute.String & Schema.Attribute.Required;
-    photographer: Schema.Attribute.Relation<
-      'oneToOne',
-      'api::photographer.photographer'
-    >;
     publishedAt: Schema.Attribute.DateTime;
     slug: Schema.Attribute.UID<'name'> & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
@@ -491,7 +490,6 @@ export interface ApiPhotographerPhotographer
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    director: Schema.Attribute.Relation<'oneToOne', 'api::director.director'>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',

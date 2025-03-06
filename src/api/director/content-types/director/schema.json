@@ -26,11 +26,15 @@
       "targetField": "name",
       "required": true
     },
-    "photographer": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::photographer.photographer",
-      "mappedBy": "director"
+    "coverVideo": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
     }
   }
 }
