@@ -1,5 +1,4 @@
-
-export default ({ env }: { env: (key: string, defaultValue?: string) => string })  => ({
+export default ({ env }: { env: (key: string, defaultValue?: string) => string }) => ({
     upload: {
         config: {
             provider: 'aws-s3',
@@ -18,12 +17,21 @@ export default ({ env }: { env: (key: string, defaultValue?: string) => string }
                 customDomain: env('CDN_URL'),
             },
             actionOptions: {
-                upload: {},
-                uploadStream: {},
+                upload: {
+                    allowedTypes: ['image/jpeg', 'image/png', 'image/webp', 'image/gif'], 
+                },
+                uploadStream: {
+                    allowedTypes: ['image/jpeg', 'image/png', 'image/webp', 'image/gif'],
+                },
                 delete: {},
             },
         },
     },
+    'mux-video-uploader': { 
+        enabled: true,
+        config: {
+            accessTokenId: env('MUX_ACCESS_TOKEN_ID'),
+            secretKey: env('MUX_SECRET_KEY'),
+        },
+    },
 });
-
-
