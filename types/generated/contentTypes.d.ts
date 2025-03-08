@@ -424,6 +424,10 @@ export interface ApiDirectorDirector extends Struct.CollectionTypeSchema {
       'api::director.director'
     > &
       Schema.Attribute.Private;
+    mux_video_uploader_mux_assets: Schema.Attribute.Relation<
+      'oneToMany',
+      'plugin::mux-video-uploader.mux-asset'
+    >;
     name: Schema.Attribute.String & Schema.Attribute.Required;
     publishedAt: Schema.Attribute.DateTime;
     slug: Schema.Attribute.UID<'name'> & Schema.Attribute.Required;

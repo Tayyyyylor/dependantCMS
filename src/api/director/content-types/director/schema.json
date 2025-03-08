@@ -39,6 +39,11 @@
     },
     "titleVideo": {
       "type": "string"
+    },
+    "mux_video_uploader_mux_assets": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "plugin::mux-video-uploader.mux-asset"
     }
   }
 }
