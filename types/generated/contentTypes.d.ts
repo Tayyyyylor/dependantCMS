@@ -426,10 +426,6 @@ export interface ApiDirectorDirector extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     name: Schema.Attribute.String & Schema.Attribute.Required;
-    project_video: Schema.Attribute.Relation<
-      'oneToOne',
-      'api::project-video.project-video'
-    >;
     project_videos: Schema.Attribute.Relation<
       'oneToMany',
       'api::project-video.project-video'
@@ -509,10 +505,6 @@ export interface ApiPhotographerPhotographer
     photo: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'> &
       Schema.Attribute.Required;
     projects: Schema.Attribute.Relation<'oneToMany', 'api::project.project'>;
-    projects_photo: Schema.Attribute.Relation<
-      'oneToOne',
-      'api::project.project'
-    >;
     publishedAt: Schema.Attribute.DateTime;
     slug: Schema.Attribute.UID<'name'> & Schema.Attribute.Required;
     titlePhoto: Schema.Attribute.String & Schema.Attribute.Required;
@@ -538,7 +530,7 @@ export interface ApiProjectVideoProjectVideo
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    director: Schema.Attribute.Relation<'oneToOne', 'api::director.director'>;
+    director: Schema.Attribute.Relation<'manyToOne', 'api::director.director'>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -587,10 +579,6 @@ export interface ApiProjectProject extends Struct.CollectionTypeSchema {
       true
     > &
       Schema.Attribute.Required;
-    photographer: Schema.Attribute.Relation<
-      'oneToOne',
-      'api::photographer.photographer'
-    >;
     projectSlug: Schema.Attribute.UID<'title'> & Schema.Attribute.Required;
     publishedAt: Schema.Attribute.DateTime;
     title: Schema.Attribute.String & Schema.Attribute.Required;

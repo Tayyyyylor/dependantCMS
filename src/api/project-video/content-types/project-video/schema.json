@@ -23,9 +23,9 @@
     },
     "director": {
       "type": "relation",
-      "relation": "oneToOne",
+      "relation": "manyToOne",
       "target": "api::director.director",
-      "inversedBy": "project_video"
+      "inversedBy": "project_videos"
     }
   }
 }
