@@ -414,7 +414,8 @@ export interface ApiDirectorDirector extends Struct.CollectionTypeSchema {
   attributes: {
     coverVideo: Schema.Attribute.Media<
       'images' | 'files' | 'videos' | 'audios'
-    >;
+    > &
+      Schema.Attribute.Required;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -424,18 +425,17 @@ export interface ApiDirectorDirector extends Struct.CollectionTypeSchema {
       'api::director.director'
     > &
       Schema.Attribute.Private;
-    mux_video_uploader_mux_assets: Schema.Attribute.Relation<
-      'oneToMany',
-      'plugin::mux-video-uploader.mux-asset'
-    >;
     name: Schema.Attribute.String & Schema.Attribute.Required;
+    project_videos: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::project-video.project-video'
+    >;
     publishedAt: Schema.Attribute.DateTime;
     slug: Schema.Attribute.UID<'name'> & Schema.Attribute.Required;
     titleVideo: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    videos: Schema.Attribute.Relation<'oneToMany', 'api::video.video'>;
   };
 }
 
@@ -514,6 +514,39 @@ export interface ApiPhotographerPhotographer
   };
 }
 
+export interface ApiProjectVideoProjectVideo
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'project_videos';
+  info: {
+    displayName: 'ProjectVideos';
+    pluralName: 'project-videos';
+    singularName: 'project-video';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::project-video.project-video'
+    > &
+      Schema.Attribute.Private;
+    mux_video_uploader_mux_assets: Schema.Attribute.Relation<
+      'oneToMany',
+      'plugin::mux-video-uploader.mux-asset'
+    >;
+    publishedAt: Schema.Attribute.DateTime;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiProjectProject extends Struct.CollectionTypeSchema {
   collectionName: 'projects';
   info: {
@@ -550,37 +583,6 @@ export interface ApiProjectProject extends Struct.CollectionTypeSchema {
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-  };
-}
-
-export interface ApiVideoVideo extends Struct.CollectionTypeSchema {
-  collectionName: 'videos';
-  info: {
-    description: '';
-    displayName: 'videos';
-    pluralName: 'videos';
-    singularName: 'video';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<'oneToMany', 'api::video.video'> &
-      Schema.Attribute.Private;
-    publishedAt: Schema.Attribute.DateTime;
-    title: Schema.Attribute.String & Schema.Attribute.Required;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    url: Schema.Attribute.Media<
-      'images' | 'files' | 'videos' | 'audios',
-      true
-    > &
-      Schema.Attribute.Required;
   };
 }
 
@@ -775,7 +777,6 @@ export interface PluginMuxVideoUploaderMuxAsset
       Schema.Attribute.DefaultTo<false>;
     title: Schema.Attribute.String &
       Schema.Attribute.Required &
-      Schema.Attribute.Configurable &
       Schema.Attribute.SetMinMaxLength<{
         maxLength: 255;
         minLength: 3;
@@ -1243,8 +1244,8 @@ declare module '@strapi/strapi' {
       'api::director.director': ApiDirectorDirector;
       'api::homepage-video.homepage-video': ApiHomepageVideoHomepageVideo;
       'api::photographer.photographer': ApiPhotographerPhotographer;
+      'api::project-video.project-video': ApiProjectVideoProjectVideo;
       'api::project.project': ApiProjectProject;
-      'api::video.video': ApiVideoVideo;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

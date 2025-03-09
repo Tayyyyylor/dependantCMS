@@ -1,0 +1,24 @@
+{
+  "kind": "collectionType",
+  "collectionName": "project_videos",
+  "info": {
+    "singularName": "project-video",
+    "pluralName": "project-videos",
+    "displayName": "ProjectVideos"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "mux_video_uploader_mux_assets": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "plugin::mux-video-uploader.mux-asset"
+    }
+  }
+}

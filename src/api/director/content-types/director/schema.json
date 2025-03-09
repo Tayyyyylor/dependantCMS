@@ -16,11 +16,6 @@
       "type": "string",
       "required": true
     },
-    "videos": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::video.video"
-    },
     "slug": {
       "type": "uid",
       "targetField": "name",
@@ -29,7 +24,7 @@
     "coverVideo": {
       "type": "media",
       "multiple": false,
-      "required": false,
+      "required": true,
       "allowedTypes": [
         "images",
         "files",
@@ -40,10 +35,10 @@
     "titleVideo": {
       "type": "string"
     },
-    "mux_video_uploader_mux_assets": {
+    "project_videos": {
       "type": "relation",
       "relation": "oneToMany",
-      "target": "plugin::mux-video-uploader.mux-asset"
+      "target": "api::project-video.project-video"
     }
   }
 }

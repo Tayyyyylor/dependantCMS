@@ -18,10 +18,8 @@ export default ({ env }: { env: (key: string, defaultValue?: string) => string }
             },
             actionOptions: {
                 upload: {
-                    allowedTypes: ['image/jpeg', 'image/png', 'image/webp', 'image/gif'], 
                 },
                 uploadStream: {
-                    allowedTypes: ['image/jpeg', 'image/png', 'image/webp', 'image/gif'],
                 },
                 delete: {},
             },
@@ -32,6 +30,11 @@ export default ({ env }: { env: (key: string, defaultValue?: string) => string }
         config: {
             accessTokenId: env('MUX_ACCESS_TOKEN_ID'),
             secretKey: env('MUX_SECRET_KEY'),
+            webhooks: {
+                onUploadStart: '/mux-webhook/upload-start',
+                onReady: '/mux-webhook/upload-ready',
+            },
+            allowedFormats: ['mp4', 'mov', 'avi', 'mkv'],
         },
     },
 });
