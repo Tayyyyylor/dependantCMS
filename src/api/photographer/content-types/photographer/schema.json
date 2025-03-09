@@ -40,6 +40,12 @@
     "titlePhoto": {
       "type": "string",
       "required": true
+    },
+    "projects_photo": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::project.project",
+      "mappedBy": "photographer"
     }
   }
 }

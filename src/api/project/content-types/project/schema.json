@@ -42,6 +42,12 @@
       "type": "uid",
       "targetField": "title",
       "required": true
+    },
+    "photographer": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::photographer.photographer",
+      "inversedBy": "projects_photo"
     }
   }
 }

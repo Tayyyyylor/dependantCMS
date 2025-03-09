@@ -4,7 +4,8 @@
   "info": {
     "singularName": "project-video",
     "pluralName": "project-videos",
-    "displayName": "ProjectVideos"
+    "displayName": "ProjectVideos",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -19,6 +20,12 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "plugin::mux-video-uploader.mux-asset"
+    },
+    "director": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::director.director",
+      "inversedBy": "project_video"
     }
   }
 }

@@ -39,6 +39,12 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::project-video.project-video"
+    },
+    "project_video": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::project-video.project-video",
+      "mappedBy": "director"
     }
   }
 }
