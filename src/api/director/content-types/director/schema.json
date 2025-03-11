@@ -40,6 +40,10 @@
       "relation": "oneToMany",
       "target": "api::project-video.project-video",
       "mappedBy": "director"
+    },
+    "order": {
+      "required": true,
+      "type": "integer"
     }
   }
 }
